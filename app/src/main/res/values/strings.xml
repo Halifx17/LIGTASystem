@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LIGTASystem</string>
+    <string name="LogIn">Log In</string>
+    <string name="Password">Password</string>
+    <string name="Username">Username</string>
+    <string name="SignIn">Sign In</string>
+    <string name="NotYetReg">Not yet registered? Click here.</string>
+    <string name="EmailAddress">Email</string>
+    <string name="Register">Register</string>
+    <string name="FirstName">First Name</string>
+    <string name="MiddleName">Middle Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Address">Address</string>
+    <string name="PhoneNumber">Phone Number</string>
+</resources>

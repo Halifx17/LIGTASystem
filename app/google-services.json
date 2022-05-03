@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "693832351431",
+    "project_id": "ligtasystem",
+    "storage_bucket": "ligtasystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693832351431:android:58e856d94c179e9b6388e2",
+        "android_client_info": {
+          "package_name": "com.example.ligtasystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693832351431-5c71cl7m7e099uaubots49re3b9772bq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY9xbEIx6Jcru5LQb790hsszST39vz67M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693832351431-5c71cl7m7e099uaubots49re3b9772bq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
