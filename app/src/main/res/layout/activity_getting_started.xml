@@ -8,23 +8,58 @@
 
 
     <TextView
-        android:id="@+id/Hi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/Hi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/getStartedUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="140dp"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/antic"
         android:text="TextView"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/welcome"
+        app:layout_constraintStart_toStartOf="@+id/welcome"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/candal"
+        android:gravity="center"
+        android:text="@string/Welcome"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Hi" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getStartedUsername" />
+
+    <TextView
+        android:id="@+id/letsGetStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/antic"
+        android:text="@string/LetsGetStarted"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/welcome"
+        app:layout_constraintStart_toStartOf="@+id/welcome"
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ClickHereButton"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/antic"
+        android:onClick="goToHome"
+        android:textAllCaps="false"
+        android:text="@string/ClickHere"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:errorTextColor="@color/red"
+        app:layout_constraintEnd_toEndOf="@+id/letsGetStarted"
+        app:layout_constraintStart_toStartOf="@+id/letsGetStarted"
+        app:layout_constraintTop_toBottomOf="@+id/letsGetStarted" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
