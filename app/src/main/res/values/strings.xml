@@ -25,4 +25,12 @@
     <string name="Or">OR</string>
     <string name="emailSignUp">SIGN UP WITH EMAIL</string>
     <string name="google">SIGN IN WITH GOOGLE</string>
+    <string name="BakunaCov">BAKUNA KONTRA COVID-19</string>
+    <string name="BakunaTig">BAKUNA KONTRA TIGDAS</string>
+    <string name="AntiRab">ANTI-RABIES</string>
+    <string name="AmamperezHistory">Brief History of the town of Amamperez Villasis, Pangasinan</string>
+    <string name="Vision">Vision</string>
+    <string name="Mission">Mission</string>
+    <string name="VisionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
+    <string name="MissionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
 </resources>

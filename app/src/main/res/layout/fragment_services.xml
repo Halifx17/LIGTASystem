@@ -7,6 +7,7 @@
     tools:context=".ServicesFragment">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -17,5 +18,133 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="120dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/gray"
+                        android:fontFamily="@font/antic"
+                        android:gravity="center"
+                        android:text="@string/BakunaCov"
+                        android:textSize="20sp">
+
+                    </TextView>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/vaccine_card">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/gray"
+                        android:fontFamily="@font/antic"
+                        android:gravity="center"
+                        android:text="@string/BakunaTig"
+                        android:textSize="20sp">
+
+                    </TextView>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/tigdas_card">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/gray"
+                        android:fontFamily="@font/antic"
+                        android:gravity="center"
+                        android:text="@string/AntiRab"
+                        android:textSize="20sp">
+
+                    </TextView>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/rabies_card">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

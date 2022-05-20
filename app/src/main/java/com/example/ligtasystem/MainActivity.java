@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1000) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                Toast.makeText(MainActivity.this,"Something Went Right",Toast.LENGTH_SHORT).show();
                 task.getResult(ApiException.class);
                 navigateToSecondActivity();
             } catch (ApiException e) {

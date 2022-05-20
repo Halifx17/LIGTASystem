@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +30,10 @@ public class GettingStarted extends AppCompatActivity {
     TextView getStartedUsername;
     String extraUsername;
     FirebaseAuth mAuth;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+
+
     FirebaseUser user;
     DatabaseReference dbReference;
 
@@ -34,7 +43,14 @@ public class GettingStarted extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getting_started);
 
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if(acct!=null){
+            Uri personName = acct.getPhotoUrl();
+            String personEmail = acct.getEmail();
 
+        }
 
         getStartedUsername = findViewById(R.id.getStartedUsername);
         Intent extraIntent = getIntent();

@@ -22,17 +22,12 @@ public class SplashScreen2 extends AppCompatActivity {
     public static int TIME_OUT = 3000;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    TextView name, email;
-    Button signOutBtn;
+    String usernameExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen2);
-
-        name = findViewById(R.id.nameGoogle);
-        email = findViewById(R.id.emailGoogle);
-        signOutBtn = findViewById(R.id.signOut);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
@@ -41,20 +36,35 @@ public class SplashScreen2 extends AppCompatActivity {
         if(acct!=null){
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
-            name.setText(personName);
-            email.setText(personEmail);
+            usernameExtra = personName;
 
         }
 
-        signOutBtn.setOnClickListener(new View.OnClickListener() {
+       /*
+       signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signOut();
             }
         });
 
+        */
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreen2.this, GettingStarted.class);
+                intent.putExtra("username",usernameExtra);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            }
+        }, TIME_OUT);
+
 
     }
+
+    /*
 
     void signOut(){
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -65,6 +75,8 @@ public class SplashScreen2 extends AppCompatActivity {
             }
         });
     }
+
+     */
 
 
 
