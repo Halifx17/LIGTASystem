@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item android:left="1dp" android:top="1dp" android:bottom="1dp" android:right="1dp">
+                <shape>
+                    <corners android:radius="10dp" />
+                    <solid android:color="@color/blue" />
+                </shape>
+            </item>
+            <item android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp">
+                <shape>
+                    <solid android:color="@color/blue"></solid>
+                    <corners android:radius="20dp"></corners>
+                </shape>
+            </item>
+
+            <item android:drawable="@drawable/google_ic"
+                android:width="40dp"
+                android:height="40dp"
+                android:gravity="center_vertical"
+                android:start="9dp">
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

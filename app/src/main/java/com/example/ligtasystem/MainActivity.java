@@ -1,16 +1,23 @@
 package com.example.ligtasystem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -23,19 +30,59 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText editEmail, editPassword;
     TextInputLayout editTextEmail, editTextPassword;
-    Button LogInButton;
+    Button logInButton, googleButton;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LogInButton = findViewById(R.id.LogInButton);
+        logInButton = findViewById(R.id.LogInButton);
+        googleButton = findViewById(R.id.googleButton);
         editEmail = findViewById(R.id.LogIn_Edit_Email);
         editPassword = findViewById(R.id.LogIn_Edit_Password);
         editTextEmail = (TextInputLayout) findViewById(R.id.EditText_Email);
         editTextPassword = (TextInputLayout) findViewById(R.id.EditText_Password);
         mAuth = FirebaseAuth.getInstance();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+
+        googleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
+            }
+        });
+    }
+
+    void signIn(){
+        Intent signInIntent = gsc.getSignInIntent();
+        startActivityForResult(signInIntent,1000);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1000) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                Toast.makeText(MainActivity.this,"Something Went Right",Toast.LENGTH_SHORT).show();
+                task.getResult(ApiException.class);
+                navigateToSecondActivity();
+            } catch (ApiException e) {
+                Toast.makeText(MainActivity.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    void navigateToSecondActivity(){
+        Intent intent = new Intent(MainActivity.this,SplashScreen2.class);
+        startActivity(intent);
+        finish();
     }
 
     public void LogIn(View view) {
