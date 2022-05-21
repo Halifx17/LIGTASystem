@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void navigateToSecondActivity(){
+        Toast.makeText(MainActivity.this, "Log In Successful", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MainActivity.this,SplashScreen2.class);
         startActivity(intent);
         finish();

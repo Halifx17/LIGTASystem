@@ -7,29 +7,42 @@
     tools:context=".GettingStarted">
 
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ligtasystem_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
     <TextView
         android:id="@+id/getStartedUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/antic"
         android:text="TextView"
         android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="@+id/welcome"
-        app:layout_constraintStart_toStartOf="@+id/welcome"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_icon"
+        app:layout_constraintStart_toStartOf="@+id/profile_icon"
+        app:layout_constraintTop_toBottomOf="@+id/profile_icon" />
 
     <TextView
         android:id="@+id/welcome"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/candal"
         android:gravity="center"
         android:text="@string/Welcome"
         android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/getStartedUsername"
+        app:layout_constraintStart_toStartOf="@+id/getStartedUsername"
         app:layout_constraintTop_toBottomOf="@+id/getStartedUsername" />
 
     <TextView

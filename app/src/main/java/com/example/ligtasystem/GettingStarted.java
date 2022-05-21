@@ -7,10 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,15 +24,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 
 public class GettingStarted extends AppCompatActivity {
 
 
     TextView getStartedUsername;
-    String extraUsername;
+    String extraUsername, extraFirstname, extraMiddlename, extraLastname, extraEmail, extraAddress, extraPhonenumber;
     FirebaseAuth mAuth;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    ImageView profilePicture;
+    Uri profileUri;
 
 
     FirebaseUser user;
@@ -43,23 +48,49 @@ public class GettingStarted extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getting_started);
 
+        profilePicture = findViewById(R.id.profile_icon);
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this,gso);
+        gsc = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if(acct!=null){
-            Uri personName = acct.getPhotoUrl();
+        if (acct != null) {
+            Uri personProfile = acct.getPhotoUrl();
             String personEmail = acct.getEmail();
+            profileUri = personProfile;
+
+
+
 
         }
+
+
 
         getStartedUsername = findViewById(R.id.getStartedUsername);
         Intent extraIntent = getIntent();
         extraUsername = extraIntent.getStringExtra("username");
-        getStartedUsername.setText("Hi, "+extraUsername+"!");
-        mAuth=FirebaseAuth.getInstance();
+        extraFirstname = extraIntent.getStringExtra("firstname");
+        extraMiddlename = extraIntent.getStringExtra("middlename");
+        extraLastname = extraIntent.getStringExtra("lastname");
+        extraEmail = extraIntent.getStringExtra("email");
+        extraAddress = extraIntent.getStringExtra("address");
+        extraPhonenumber = extraIntent.getStringExtra("phoneNumber");
+        getStartedUsername.setText("Hi, " + extraUsername + "!");
+        mAuth = FirebaseAuth.getInstance();
+
+        Log.e("Details",extraFirstname+" "+extraMiddlename+" "+extraLastname
+                +" "+extraEmail+" "+extraAddress+" "+extraPhonenumber);
+
+        Picasso.get()
+                .load(profileUri)
+                .placeholder(R.drawable.person)
+                .into(profilePicture);
+
+
+
 
 
     }
+
 
 
 
@@ -75,6 +106,7 @@ public class GettingStarted extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent = new Intent(GettingStarted.this, MainActivity.class);
                 mAuth.signOut();
+                gsc.signOut();
                 finish();
                 startActivity(intent);
             }

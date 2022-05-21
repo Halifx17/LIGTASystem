@@ -3,6 +3,7 @@
     <string name="LogIn">Log In</string>
     <string name="Password">Password</string>
     <string name="Username">Username</string>
+    <string name="Username2">(Username)</string>
     <string name="SignIn">Sign In</string>
     <string name="NotYetReg">Not yet registered? Click here.</string>
     <string name="EmailAddress">Email</string>
@@ -33,4 +34,5 @@
     <string name="Mission">Mission</string>
     <string name="VisionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
     <string name="MissionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
+    <string name="UserInfo">User Info</string>
 </resources>

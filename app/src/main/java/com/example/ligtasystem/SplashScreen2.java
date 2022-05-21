@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,6 +24,7 @@ public class SplashScreen2 extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     String usernameExtra;
+    Uri profileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,9 @@ public class SplashScreen2 extends AppCompatActivity {
         if(acct!=null){
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
+            Uri profilePicture = acct.getPhotoUrl();
             usernameExtra = personName;
+            profileUri = profilePicture;
 
         }
 

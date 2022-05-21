@@ -29,7 +29,7 @@ public class SplashScreen extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference dbReference;
-    String userID, usernameExtra;
+    String userID, usernameExtra, firstnameExtra, middlenameExtra, lastnameExtra, emailExtra, addressExtra, phoneNumberExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,20 @@ public class SplashScreen extends AppCompatActivity {
                 User user = snapshot.getValue(User.class);
 
                 if(user!=null){
-                    String username;
+                    String username, firstname, middlename, lastname, email, address, phoneNumber;
                     username = user.username;
+                    firstname = user.firstname;
+                    middlename = user.middlename;
+                    lastname = user.lastname;
+                    email = user.email;
+                    address = user.address;
+                    phoneNumber = user.phoneNumber;
+                    firstnameExtra = firstname;
+                    middlenameExtra = middlename;
+                    lastnameExtra = lastname;
+                    emailExtra = email;
+                    addressExtra = address;
+                    phoneNumberExtra = phoneNumber;
                     usernameExtra = username;
 
                 }
@@ -74,6 +86,12 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashScreen.this, GettingStarted.class);
                 intent.putExtra("username",usernameExtra);
+                intent.putExtra("firstname",firstnameExtra);
+                intent.putExtra("middlename",middlenameExtra);
+                intent.putExtra("lastname",lastnameExtra);
+                intent.putExtra("email",emailExtra);
+                intent.putExtra("address",addressExtra);
+                intent.putExtra("phoneNumber",phoneNumberExtra);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
