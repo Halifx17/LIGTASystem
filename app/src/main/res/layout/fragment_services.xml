@@ -37,6 +37,9 @@
             android:paddingBottom="120dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/covidVac"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="280dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
@@ -72,6 +75,9 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/tigdasVac"
                 android:layout_width="280dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
@@ -107,6 +113,9 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/rabiesVac"
                 android:layout_width="280dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"

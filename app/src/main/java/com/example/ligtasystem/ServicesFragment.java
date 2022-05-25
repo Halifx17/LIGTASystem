@@ -1,7 +1,9 @@
 package com.example.ligtasystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ServicesFragment extends Fragment {
+
+    CardView covidVac, tigdasVac, rabiesVac;
 
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +63,39 @@ public class ServicesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_services, container, false);
+        View view =  inflater.inflate(R.layout.fragment_services, container, false);
+
+        covidVac = view.findViewById(R.id.covidVac);
+        tigdasVac = view.findViewById(R.id.tigdasVac);
+        rabiesVac = view.findViewById(R.id.rabiesVac);
+
+        covidVac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Covid_Vac.class);
+                startActivity(intent);
+            }
+        });
+
+        tigdasVac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Tigdas_Vac.class);
+                startActivity(intent);
+            }
+        });
+
+        rabiesVac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Rabies_Vac.class);
+                startActivity(intent);
+            }
+        });
+
+
+        return view;
     }
+
+
 }

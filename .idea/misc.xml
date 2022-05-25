@@ -19,16 +19,23 @@
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/round_button.xml" value="0.3385" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/round_icon.xml" value="0.351" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/round_textfields.xml" value="0.351" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/shape_circle_1.xml" value="0.3075" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/shape_circle_2.xml" value="0.3075" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/shape_circle_3.xml" value="0.3075" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/drawable/shape_rectangle.xml" value="0.3075" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_covid_vac.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_getting_started.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_home.xml" value="0.2777777777777778" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_rabies_vac.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_registration.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_splash_screen2.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/activity_tigdas_vac.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/fragment_about.xml" value="0.35260416666666666" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/fragment_services.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/layout/fragment_services.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/mipmap-anydpi-v26/ic_launcher_hdpi.xml" value="0.1915" />
         <entry key="..\:/AndroidStudioProjects/LIGTASystem/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.179" />

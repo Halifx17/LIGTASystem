@@ -7,16 +7,276 @@
     tools:context=".HomeFragment">
 
     <TextView
+        android:id="@+id/trackerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:text="@string/Home"
-        android:textSize="32sp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/antic"
+        android:text="COVID-19 TRACKER"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/trackerTitle"
+        app:layout_constraintStart_toStartOf="@+id/trackerTitle"
+        app:layout_constraintTop_toBottomOf="@+id/trackerTitle">
+
+        <TextView
+            android:id="@+id/globalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/antic"
+            android:text="Global Stats"
+            android:textSize="32sp"
+            android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@drawable/shape_rectangle"
+        app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+        app:layout_constraintStart_toStartOf="@+id/globalTitle"
+        app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/shape_circle_2">
+        </ImageView>
+        <TextView
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Cases"
+            android:textSize="18sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/totalCasesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textSize="18sp"
+            android:textAlignment="textEnd">
+
+        </TextView>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/shape_rectangle"
+            app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+            app:layout_constraintStart_toStartOf="@+id/globalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/shape_circle_2">
+            </ImageView>
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Cases"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/newCasesTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="18sp"
+                android:textAlignment="textEnd">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/shape_rectangle"
+            app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+            app:layout_constraintStart_toStartOf="@+id/globalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/shape_circle_1">
+            </ImageView>
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Deaths"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalDeathsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="18sp"
+                android:textAlignment="textEnd">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/shape_rectangle"
+            app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+            app:layout_constraintStart_toStartOf="@+id/globalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/shape_circle_1">
+            </ImageView>
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Deaths"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/newDeathsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="18sp"
+                android:textAlignment="textEnd">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/shape_rectangle"
+            app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+            app:layout_constraintStart_toStartOf="@+id/globalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/shape_circle_3">
+            </ImageView>
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Recovered"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalRecoveredTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="18sp"
+                android:textAlignment="textEnd">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/shape_rectangle"
+            app:layout_constraintEnd_toEndOf="@+id/globalTitle"
+            app:layout_constraintStart_toStartOf="@+id/globalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/globalTitle">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/shape_circle_3">
+            </ImageView>
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Recovered"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/newRecoveredTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="18sp"
+                android:textAlignment="textEnd">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
 
