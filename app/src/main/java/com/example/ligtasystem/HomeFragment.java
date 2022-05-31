@@ -1,5 +1,6 @@
 package com.example.ligtasystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
 
     private ProgressBar progressBar;
     private TextView totalCasesTv, newCasesTv, totalDeathsTv, newDeathsTv, totalRecoveredTv, newRecoveredTv;
+    Button countriesBtn;
 
 
 
@@ -87,6 +90,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        countriesBtn = view.findViewById(R.id.countriesBtn);
+
+
         progressBar = view.findViewById(R.id.progressBar);
         totalCasesTv = view.findViewById(R.id.totalCasesTv);
         newCasesTv = view.findViewById(R.id.newCasesTv);
@@ -99,9 +105,22 @@ public class HomeFragment extends Fragment {
         loadHomeData2();
 
 
+        countriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),Countries.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
 
+
+
+
     }
+
+
 
     private void loadHomeData(){
 

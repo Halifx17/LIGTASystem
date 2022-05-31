@@ -35,4 +35,5 @@
     <string name="VisionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
     <string name="MissionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
     <string name="UserInfo">User Info</string>
+    <string name="Stats">Stats</string>
 </resources>

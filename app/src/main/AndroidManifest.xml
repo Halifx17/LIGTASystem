@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LIGTASystem">
         <activity
+            android:name=".Countries"
+            android:exported="false" />
+        <activity
             android:name=".Rabies_Vac"
             android:exported="false" />
         <activity

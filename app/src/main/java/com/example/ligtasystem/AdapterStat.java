@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,14 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> {
+public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> implements Filterable {
 
-    private Context context;
-    public ArrayList<ModelStat> statArrayList;
+    public Context context;
+    public ArrayList<ModelStat> statArrayList, filterList;
+    public FilterStat filter;
 
     public AdapterStat(Context context, ArrayList<ModelStat> statArrayList) {
         this.context = context;
         this.statArrayList = statArrayList;
+        this.filterList = statArrayList;
     }
 
     @NonNull
@@ -35,12 +39,12 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> {
         ModelStat modelStat = statArrayList.get(position);
 
         String country = modelStat.getCountry();
-        String cases = modelStat.getCases();
-        String todayCases = modelStat.getTodayCases();
-        String deaths = modelStat.getDeaths();
-        String todayDeaths = modelStat.getTodayDeaths();
-        String recovered = modelStat.getRecovered();
-        String todayRecovered = modelStat.getTodayRecovered();
+        String cases = modelStat.getTotalConfirmed();
+        String todayCases = modelStat.getNewConfirmed();
+        String deaths = modelStat.getTotalDeaths();
+        String todayDeaths = modelStat.getNewDeaths();
+        String recovered = modelStat.getTotalRecovered();
+        String todayRecovered = modelStat.getNewRecovered();
 
         holder.countryTv.setText(country);
         holder.casesTv.setText(cases);
@@ -57,6 +61,14 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> {
         return statArrayList.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        if(filter == null){
+            filter = new FilterStat(this,filterList);
+        }
+        return filter;
+    }
+
 
     class HolderStat extends RecyclerView.ViewHolder{
 
@@ -71,7 +83,7 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> {
             todayCasesTv = itemView.findViewById(R.id.todayCasesTv);
             deathsTv = itemView.findViewById(R.id.deathsTv);
             todayDeathsTv = itemView.findViewById(R.id.todayDeathsTv);
-            recoveredTv = itemView.findViewById(R.id.todayDeathsTv);
+            recoveredTv = itemView.findViewById(R.id.recoveredTv);
             todayRecoveredTv = itemView.findViewById(R.id.todayRecoveredTv);
         }
     }
