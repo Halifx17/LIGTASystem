@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -39,12 +42,14 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> im
         ModelStat modelStat = statArrayList.get(position);
 
         String country = modelStat.getCountry();
-        String cases = modelStat.getTotalConfirmed();
-        String todayCases = modelStat.getNewConfirmed();
-        String deaths = modelStat.getTotalDeaths();
-        String todayDeaths = modelStat.getNewDeaths();
-        String recovered = modelStat.getTotalRecovered();
-        String todayRecovered = modelStat.getNewRecovered();
+        String cases = modelStat.getCases();
+        String todayCases = modelStat.getTodayCases();
+        String deaths = modelStat.getDeaths();
+        String todayDeaths = modelStat.getTodayDeaths();
+        String recovered = modelStat.getRecovered();
+        String todayRecovered = modelStat.getTodayRecovered();
+        String flagUrl = modelStat.flagUrl;
+
 
         holder.countryTv.setText(country);
         holder.casesTv.setText(cases);
@@ -53,6 +58,7 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> im
         holder.todayDeathsTv.setText(todayDeaths);
         holder.recoveredTv.setText(recovered);
         holder.todayRecoveredTv.setText(todayRecovered);
+        Glide.with(context).load(flagUrl).into(holder.flag);
 
     }
 
@@ -73,11 +79,13 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> im
     class HolderStat extends RecyclerView.ViewHolder{
 
         TextView countryTv, casesTv, todayCasesTv, deathsTv, todayDeathsTv, recoveredTv, todayRecoveredTv;
+        ImageView flag;
 
 
         public HolderStat(@NonNull View itemView) {
             super(itemView);
 
+            flag = itemView.findViewById(R.id.flag);
             countryTv = itemView.findViewById(R.id.countryTv);
             casesTv = itemView.findViewById(R.id.casesTv);
             todayCasesTv = itemView.findViewById(R.id.todayCasesTv);
@@ -85,6 +93,7 @@ public class AdapterStat extends RecyclerView.Adapter<AdapterStat.HolderStat> im
             todayDeathsTv = itemView.findViewById(R.id.todayDeathsTv);
             recoveredTv = itemView.findViewById(R.id.recoveredTv);
             todayRecoveredTv = itemView.findViewById(R.id.todayRecoveredTv);
+
         }
     }
 }

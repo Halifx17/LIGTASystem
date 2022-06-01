@@ -2,6 +2,7 @@ package com.example.ligtasystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,24 +22,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Countries extends AppCompatActivity {
 
-    private static final String STATS_URL = "https://api.covid19api.com/summary";
+    private static final String STATS_URL = "https://corona.lmao.ninja/v2/countries";
 
     ProgressBar progressBar;
     EditText searchEt;
     ImageButton sortBtn;
     RecyclerView statsRv;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     ArrayList<ModelStat>statArrayList;
@@ -49,7 +53,8 @@ public class Countries extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countries);
 
-        progressBar = findViewById(R.id.progressBar);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        progressBar = findViewById(R.id.progressBarCountry);
         searchEt = findViewById(R.id.searchEt);
         sortBtn = findViewById(R.id.sortBtn);
         statsRv = findViewById(R.id.statsRv);
@@ -110,12 +115,21 @@ public class Countries extends AppCompatActivity {
 
             }
         });
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadStatsData1();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         loadStatsData();
+        super.onResume();
     }
 
     private  void loadStatsData(){
@@ -142,6 +156,31 @@ public class Countries extends AppCompatActivity {
 
     }
 
+    private  void loadStatsData1(){
+        progressBar.setVisibility(View.VISIBLE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                handleResponse(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.getCache().clear();
+        requestQueue.add(stringRequest);
+
+    }
+
     private void handleResponse(String response) {
 
         statArrayList = new ArrayList<>();
@@ -149,16 +188,42 @@ public class Countries extends AppCompatActivity {
 
         try {
 
-            JSONObject jsonObject = new JSONObject(response);
 
-            JSONArray jsonArray = jsonObject.getJSONArray("Countries");
 
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.setDateFormat("dd/MM/yyyy hh:mm a");
-            Gson gson = gsonBuilder.create();
+            JSONArray jsonArray = new JSONArray(response);
+
 
             for(int i=0; i<jsonArray.length(); i++){
-                ModelStat modelStat = gson.fromJson(jsonArray.getJSONObject(i).toString(),ModelStat.class);
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                String countryName = jsonObject.getString("country");
+                String cases = jsonObject.getString("cases");
+                String todayCases = jsonObject.getString("todayCases");
+                String deaths = jsonObject.getString("deaths");
+                String todayDeaths = jsonObject.getString("todayDeaths");
+                String recovered = jsonObject.getString("recovered");
+                String todayRecovered = jsonObject.getString("todayRecovered");
+
+
+                String casesFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(cases));
+                String todayCasesFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(todayCases));
+                String deathsFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(deaths));
+                String todayDeathsFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(todayDeaths));
+                String recoveredFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(recovered));
+                String todayRecoveredFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(todayRecovered));
+
+                JSONObject object = jsonObject.getJSONObject("countryInfo");
+                String flagUrl = object.getString("flag");
+
+                ModelStat modelStat = new ModelStat(countryName,
+                        casesFormatted,
+                        todayCasesFormatted,
+                        deathsFormatted,
+                        todayDeathsFormatted,
+                        recoveredFormatted,
+                        todayRecoveredFormatted,
+                        flagUrl);
                 statArrayList.add(modelStat);
             }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
     private static final String STATS_URL = "https://api.covid19api.com/summary";
     private static final String STATS_URL2 = "https://disease.sh/v3/covid-19/all";
     private static final String STATS_URL3 = "https://corona.lmao.ninja/v2/countries";
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -89,6 +92,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+
 
         countriesBtn = view.findViewById(R.id.countriesBtn);
 
@@ -100,7 +105,7 @@ public class HomeFragment extends Fragment {
         newDeathsTv = view.findViewById(R.id.newDeathsTv);
         totalRecoveredTv = view.findViewById(R.id.totalRecoveredTv);
         newRecoveredTv = view.findViewById(R.id.newRecoveredTv);
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
 
         loadHomeData2();
 
@@ -113,23 +118,33 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadHomeData1();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         return view;
-
-
 
 
     }
 
+    @Override
+    public void onResume() {
+        loadHomeData2();
+        super.onResume();
+    }
 
-
-    private void loadHomeData(){
+    private void loadHomeData1(){
 
         progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                handleResponse2(response);
+                handleResponse3(response);
 
             }
         }, new Response.ErrorListener() {
@@ -142,6 +157,7 @@ public class HomeFragment extends Fragment {
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.getCache().clear();
         requestQueue.add(stringRequest);
 
     }
