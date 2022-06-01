@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
 
     //private static final String STATS_URL = "https://api.covid19api.com/summary";
     private static final String STATS_URL = "https://disease.sh/v3/covid-19/all";
-    private static final String STATS_URL2 = "https://corona.lmao.ninja/v2/countries/philippines";
+    private static final String STATS_URL2 = "https://disease.sh/v3/covid-19/countries/Philippines?strict=true";
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -48,9 +48,20 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private ProgressBar progressBar;
-    private TextView totalCasesTv, newCasesTv, totalDeathsTv, newDeathsTv, totalRecoveredTv, newRecoveredTv;
-    private TextView phTotalCasesTv, phNewCasesTv, phTotalDeathsTv, phNewDeathsTv, phTotalRecoveredTv, phNewRecoveredTv;
+    private ProgressBar progressBar, progressBar2;
+    private TextView
+            totalCasesTv,
+            newCasesTv,
+            totalDeathsTv,
+            newDeathsTv,
+            totalRecoveredTv,
+            newRecoveredTv,
+            phTotalCasesTv,
+            phNewCasesTv,
+            phTotalDeathsTv,
+            phNewDeathsTv,
+            phTotalRecoveredTv,
+            phNewRecoveredTv;
     Button countriesBtn;
 
 
@@ -95,19 +106,10 @@ public class HomeFragment extends Fragment {
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
 
-
         countriesBtn = view.findViewById(R.id.countriesBtn);
-
-
         progressBar = view.findViewById(R.id.progressBar);
-        totalCasesTv = view.findViewById(R.id.totalCasesTv);
-        newCasesTv = view.findViewById(R.id.newCasesTv);
-        totalDeathsTv = view.findViewById(R.id.totalDeathsTv);
-        newDeathsTv = view.findViewById(R.id.newDeathsTv);
-        totalRecoveredTv = view.findViewById(R.id.totalRecoveredTv);
-        newRecoveredTv = view.findViewById(R.id.newRecoveredTv);
+        progressBar2 = view.findViewById(R.id.progressBar2);
 
-        progressBar = view.findViewById(R.id.progressBar);
         phTotalCasesTv = view.findViewById(R.id.phTotalCasesTv);
         phNewCasesTv = view.findViewById(R.id.phNewCasesTv);
         phTotalDeathsTv = view.findViewById(R.id.phTotalDeathsTv);
@@ -115,9 +117,18 @@ public class HomeFragment extends Fragment {
         phTotalRecoveredTv = view.findViewById(R.id.phTotalRecoveredTv);
         phNewRecoveredTv = view.findViewById(R.id.phNewRecoveredTv);
 
-        progressBar.setVisibility(View.GONE);
+        totalCasesTv = view.findViewById(R.id.totalCasesTv);
+        newCasesTv = view.findViewById(R.id.newCasesTv);
+        totalDeathsTv = view.findViewById(R.id.totalDeathsTv);
+        newDeathsTv = view.findViewById(R.id.newDeathsTv);
+        totalRecoveredTv = view.findViewById(R.id.totalRecoveredTv);
+        newRecoveredTv = view.findViewById(R.id.newRecoveredTv);
 
-        loadHomeData2();
+        progressBar.setVisibility(View.GONE);
+        progressBar2.setVisibility(View.GONE);
+
+        loadHomeDataPh1();
+        loadHomeData1();
 
 
         countriesBtn.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +142,8 @@ public class HomeFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadHomeData1();
+                loadHomeDataPh2();
+                loadHomeData2();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -143,8 +155,8 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onResume() {
-        loadHomeData2();
-        loadHomeDataPh2();
+        loadHomeDataPh1();
+        loadHomeData1();
         super.onResume();
     }
 
@@ -168,7 +180,6 @@ public class HomeFragment extends Fragment {
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.getCache().clear();
         requestQueue.add(stringRequest);
 
     }
@@ -193,13 +204,14 @@ public class HomeFragment extends Fragment {
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.getCache().clear();
         requestQueue.add(stringRequest);
 
     }
 
     private void loadHomeDataPh1(){
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar2.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -210,7 +222,31 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
+                progressBar2.setVisibility(View.GONE);
+                Toast.makeText(getContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void loadHomeDataPh2(){
+
+        progressBar2.setVisibility(View.VISIBLE);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                handleResponsePh(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar2.setVisibility(View.GONE);
                 Toast.makeText(getContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
@@ -222,60 +258,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void loadHomeDataPh2(){
-
-        progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                handleResponsePh(response);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(getContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(stringRequest);
-
-    }
-
-    /*private void handleResponse(String response) {
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-
-            JSONObject globalJO = jsonObject.getJSONObject("Global");
-
-            String newConfirmed = globalJO.getString("NewConfirmed");
-            String totalConfirmed = globalJO.getString("TotalConfirmed");
-            String newDeaths = globalJO.getString("NewDeaths");
-            String totalDeaths = globalJO.getString("TotalDeaths");
-            String newRecovered = globalJO.getString("NewRecovered");
-            String totalRecovered = globalJO.getString("TotalRecovered");
-
-            totalCasesTv.setText(totalConfirmed);
-            newCasesTv.setText(newConfirmed);
-            totalDeathsTv.setText(totalDeaths);
-            newDeathsTv.setText(newDeaths);
-            totalRecoveredTv.setText(totalRecovered);
-            newRecoveredTv.setText(newRecovered);
-
-        }
-        catch (Exception e){
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
-
-     */
 
     private void handleResponse(String response) {
         try {
@@ -339,12 +321,11 @@ public class HomeFragment extends Fragment {
             phNewRecoveredTv.setText(newRecoveredFormatted);
             phTotalRecoveredTv.setText(totalRecoveredFormatted);
 
-            progressBar.setVisibility(View.GONE);
-
+            progressBar2.setVisibility(View.GONE);
 
         }
         catch (Exception e){
-            progressBar.setVisibility(View.GONE);
+            progressBar2.setVisibility(View.GONE);
             Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
         }
 

@@ -36,7 +36,7 @@ import java.util.Comparator;
 
 public class Countries extends AppCompatActivity {
 
-    private static final String STATS_URL = "https://corona.lmao.ninja/v2/countries";
+    private static final String STATS_URL = "https://disease.sh/v3/covid-19/countries";
 
     ProgressBar progressBar;
     EditText searchEt;
