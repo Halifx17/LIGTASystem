@@ -32,9 +32,9 @@ import java.text.DecimalFormat;
  */
 public class HomeFragment extends Fragment {
 
-    private static final String STATS_URL = "https://api.covid19api.com/summary";
-    private static final String STATS_URL2 = "https://disease.sh/v3/covid-19/all";
-    private static final String STATS_URL3 = "https://corona.lmao.ninja/v2/countries";
+    //private static final String STATS_URL = "https://api.covid19api.com/summary";
+    private static final String STATS_URL = "https://disease.sh/v3/covid-19/all";
+    private static final String STATS_URL2 = "https://corona.lmao.ninja/v2/countries/philippines";
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
 
     private ProgressBar progressBar;
     private TextView totalCasesTv, newCasesTv, totalDeathsTv, newDeathsTv, totalRecoveredTv, newRecoveredTv;
+    private TextView phTotalCasesTv, phNewCasesTv, phTotalDeathsTv, phNewDeathsTv, phTotalRecoveredTv, phNewRecoveredTv;
     Button countriesBtn;
 
 
@@ -105,6 +106,15 @@ public class HomeFragment extends Fragment {
         newDeathsTv = view.findViewById(R.id.newDeathsTv);
         totalRecoveredTv = view.findViewById(R.id.totalRecoveredTv);
         newRecoveredTv = view.findViewById(R.id.newRecoveredTv);
+
+        progressBar = view.findViewById(R.id.progressBar);
+        phTotalCasesTv = view.findViewById(R.id.phTotalCasesTv);
+        phNewCasesTv = view.findViewById(R.id.phNewCasesTv);
+        phTotalDeathsTv = view.findViewById(R.id.phTotalDeathsTv);
+        phNewDeathsTv = view.findViewById(R.id.phNewDeathsTv);
+        phTotalRecoveredTv = view.findViewById(R.id.phTotalRecoveredTv);
+        phNewRecoveredTv = view.findViewById(R.id.phNewRecoveredTv);
+
         progressBar.setVisibility(View.GONE);
 
         loadHomeData2();
@@ -134,17 +144,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         loadHomeData2();
+        loadHomeDataPh2();
         super.onResume();
     }
 
     private void loadHomeData1(){
 
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                handleResponse3(response);
+                handleResponse(response);
 
             }
         }, new Response.ErrorListener() {
@@ -165,11 +176,11 @@ public class HomeFragment extends Fragment {
     private void loadHomeData2(){
 
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                handleResponse2(response);
+                handleResponse(response);
 
             }
         }, new Response.ErrorListener() {
@@ -186,7 +197,56 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void handleResponse(String response) {
+    private void loadHomeDataPh1(){
+
+        progressBar.setVisibility(View.VISIBLE);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                handleResponsePh(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.getCache().clear();
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void loadHomeDataPh2(){
+
+        progressBar.setVisibility(View.VISIBLE);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, STATS_URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                handleResponsePh(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(),""+error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+
+    }
+
+    /*private void handleResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
 
@@ -215,7 +275,9 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void handleResponse2(String response) {
+     */
+
+    private void handleResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
 
@@ -252,7 +314,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void handleResponse3(String response) {
+    private void handleResponsePh(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
 
@@ -270,12 +332,12 @@ public class HomeFragment extends Fragment {
             String newRecoveredFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(newRecovered));
             String totalRecoveredFormatted = new DecimalFormat("#,###.##").format(Double.parseDouble(totalRecovered));
 
-            newCasesTv.setText(newConfirmedFormatted);
-            totalCasesTv.setText(totalConfirmedFormatted);
-            newDeathsTv.setText(newDeathsFormatted);
-            totalDeathsTv.setText(totalDeathsFormatted);
-            newRecoveredTv.setText(newRecoveredFormatted);
-            totalRecoveredTv.setText(totalRecoveredFormatted);
+            phNewCasesTv.setText(newConfirmedFormatted);
+            phTotalCasesTv.setText(totalConfirmedFormatted);
+            phNewDeathsTv.setText(newDeathsFormatted);
+            phTotalDeathsTv.setText(totalDeathsFormatted);
+            phNewRecoveredTv.setText(newRecoveredFormatted);
+            phTotalRecoveredTv.setText(totalRecoveredFormatted);
 
             progressBar.setVisibility(View.GONE);
 
@@ -288,4 +350,5 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 }
