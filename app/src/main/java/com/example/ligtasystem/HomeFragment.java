@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONObject;
 
@@ -35,6 +37,9 @@ public class HomeFragment extends Fragment {
     //private static final String STATS_URL = "https://api.covid19api.com/summary";
     private static final String STATS_URL = "https://disease.sh/v3/covid-19/all";
     private static final String STATS_URL2 = "https://disease.sh/v3/covid-19/countries/Philippines?strict=true";
+    private static final String PH_FLAG_URL = "https://disease.sh/assets/img/flags/ph.png";
+    private static final String GLOBAL_FLAG_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/640px-Flag_of_the_United_Nations.svg.png";
+
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -63,6 +68,7 @@ public class HomeFragment extends Fragment {
             phTotalRecoveredTv,
             phNewRecoveredTv;
     Button countriesBtn;
+    ImageView phFlag, globalFlag;
 
 
 
@@ -126,6 +132,9 @@ public class HomeFragment extends Fragment {
 
         progressBar.setVisibility(View.GONE);
         progressBar2.setVisibility(View.GONE);
+
+        phFlag = view.findViewById(R.id.phFlag);
+        globalFlag = view.findViewById(R.id.globalFlag);
 
         loadHomeDataPh1();
         loadHomeData1();
@@ -284,6 +293,8 @@ public class HomeFragment extends Fragment {
             newRecoveredTv.setText(newRecoveredFormatted);
             totalRecoveredTv.setText(totalRecoveredFormatted);
 
+            Glide.with(getContext()).load(GLOBAL_FLAG_URL).into(globalFlag);
+
             progressBar.setVisibility(View.GONE);
 
 
@@ -320,6 +331,8 @@ public class HomeFragment extends Fragment {
             phTotalDeathsTv.setText(totalDeathsFormatted);
             phNewRecoveredTv.setText(newRecoveredFormatted);
             phTotalRecoveredTv.setText(totalRecoveredFormatted);
+
+            Glide.with(getContext()).load(PH_FLAG_URL).into(phFlag);
 
             progressBar2.setVisibility(View.GONE);
 

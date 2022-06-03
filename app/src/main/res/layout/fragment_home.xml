@@ -47,9 +47,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
+                android:paddingHorizontal="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:id="@+id/titleLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
 
                 <TextView
@@ -60,7 +67,21 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/antic"
                     android:text="Global Stats"
-                    android:textSize="32sp" />
+                    android:textSize="32sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"/>
+
+                <ImageView
+                    android:id="@+id/globalFlag"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/flag_bg"
+                    android:padding="1dp">
+
+                </ImageView>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -309,21 +330,43 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
+            android:paddingHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
 
 
-            <TextView
-                android:id="@+id/phTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/antic"
-                android:text="Philippines Stats"
-                android:textSize="32sp" />
+                android:id="@+id/titleLinearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/phTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/antic"
+                    android:text="Philippines"
+                    android:textSize="32sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"/>
+
+                <ImageView
+                    android:id="@+id/phFlag"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/flag_bg"
+                    android:padding="1dp">
+
+                </ImageView>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -565,12 +608,12 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/round_button"
+            android:background="@drawable/login_button"
             android:fontFamily="@font/antic"
             android:onClick="countries"
-            android:text="Other Countries"
+            android:text="Track Countries"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:errorTextColor="@color/red"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"

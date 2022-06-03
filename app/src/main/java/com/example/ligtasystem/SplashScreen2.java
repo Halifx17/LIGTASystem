@@ -39,6 +39,8 @@ public class SplashScreen2 extends AppCompatActivity {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
             Uri profilePicture = acct.getPhotoUrl();
+
+
             usernameExtra = personName;
             profileUri = profilePicture;
 
