@@ -58,10 +58,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/antic"
                 android:text="DisplayName"
                 android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/antic"
+                android:text="(Username)"
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="350dp"
@@ -76,17 +85,15 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="left"
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="@font/antic"
-                        android:gravity="left|center_vertical"
-                        android:text="Name:"
-                        android:textSize="20sp">
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/person">
 
-                    </TextView>
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/profName"
@@ -117,18 +124,15 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="left"
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_baseline_cake_24">
 
-                        android:fontFamily="@font/antic"
-                        android:gravity="left|center_vertical"
-                        android:text="Birthdate:"
-                        android:textSize="20sp">
-
-                    </TextView>
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/profBirth"
@@ -160,17 +164,15 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="left"
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="@font/antic"
-                        android:gravity="left|center_vertical"
-                        android:text="Email:"
-                        android:textSize="20sp">
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_baseline_email_24">
 
-                    </TextView>
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/profEmail"
@@ -202,18 +204,15 @@
                     android:layout_height="40dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="left"
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_baseline_local_phone_24">
 
-                        android:fontFamily="@font/antic"
-                        android:gravity="left|center_vertical"
-                        android:text="Phone"
-                        android:textSize="20sp">
-
-                    </TextView>
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/profPhone"

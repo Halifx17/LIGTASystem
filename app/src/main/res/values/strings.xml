@@ -36,4 +36,7 @@
     <string name="MissionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales ex non ex aliquam fermentum.</string>
     <string name="UserInfo">User Info</string>
     <string name="Stats">Stats</string>
+    <string name="Please">Please fill out the remaining information to complete the registration</string>
+
+    <string name="default_web_client_id1" translatable="false">693832351431-5c71cl7m7e099uaubots49re3b9772bq.apps.googleusercontent.com</string>
 </resources>

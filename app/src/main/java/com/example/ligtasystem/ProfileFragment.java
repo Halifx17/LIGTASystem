@@ -1,11 +1,13 @@
 package com.example.ligtasystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -30,6 +33,7 @@ public class ProfileFragment extends Fragment {
 
 
     String usernameExtra, fullNameExtra, emailExtra;
+    String extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate;
     Uri profileUri;
 
     TextView name, email, birthday, phone, profileName;
@@ -88,20 +92,38 @@ public class ProfileFragment extends Fragment {
         profileName = view.findViewById(R.id.profileName);
         name = view.findViewById(R.id.profName);
         email = view.findViewById(R.id.profEmail);
+        birthday = view.findViewById(R.id.profBirth);
+        phone = view.findViewById(R.id.profPhone);
         profilePic = view.findViewById(R.id.profile_pic);
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(getContext(),gso);
+        Intent extraIntent = getActivity().getIntent();
+        extraUsername = extraIntent.getStringExtra("username");
+        extraFirstname = extraIntent.getStringExtra("firstname");
+        extraLastname = extraIntent.getStringExtra("lastname");
+        extraEmail = extraIntent.getStringExtra("email");
+        extraAddress = extraIntent.getStringExtra("address");
+        extraPhoneNumber = extraIntent.getStringExtra("phoneNumber");
+        extraProfileUri = extraIntent.getStringExtra("profileUri");
+        extraBirthDate = extraIntent.getStringExtra("birthDate");
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
-        if(acct!=null){
-            Uri profilePicture = acct.getPhotoUrl();
-            profileName.setText(acct.getDisplayName());
-            name.setText(acct.getFamilyName()+", "+acct.getGivenName());
-            email.setText(acct.getEmail());
-            profileUri = profilePicture;
+        profileName.setText(extraUsername);
+        name.setText(extraFirstname+" "+extraLastname);
+        birthday.setText(extraBirthDate);
+        email.setText(extraEmail);
+        phone.setText(extraPhoneNumber);
 
-        }
+
+        Log.e("Output",
+                extraUsername+" "+
+                        extraFirstname+" "+
+                        extraLastname+" "+
+                        extraEmail+" "+
+                        extraAddress+" "+
+                        extraPhoneNumber+" "+
+                        extraProfileUri+" "+
+                        extraBirthDate);
+
+        profileUri = Uri.parse(extraProfileUri);
 
         Picasso.get()
                 .load(profileUri)

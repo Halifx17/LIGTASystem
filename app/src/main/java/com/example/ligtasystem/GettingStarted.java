@@ -31,7 +31,7 @@ public class GettingStarted extends AppCompatActivity {
 
 
     TextView getStartedUsername;
-    String extraUsername, extraFirstname, extraMiddlename, extraLastname, extraEmail, extraAddress, extraPhonenumber;
+    String extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate, extraPassword;
     FirebaseAuth mAuth;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -53,37 +53,45 @@ public class GettingStarted extends AppCompatActivity {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            Uri personProfile = acct.getPhotoUrl();
-            String personEmail = acct.getEmail();
-            profileUri = personProfile;
-
-
-
-
-        }
-
 
 
         getStartedUsername = findViewById(R.id.getStartedUsername);
+
+
         Intent extraIntent = getIntent();
         extraUsername = extraIntent.getStringExtra("username");
         extraFirstname = extraIntent.getStringExtra("firstname");
-        extraMiddlename = extraIntent.getStringExtra("middlename");
         extraLastname = extraIntent.getStringExtra("lastname");
         extraEmail = extraIntent.getStringExtra("email");
         extraAddress = extraIntent.getStringExtra("address");
-        extraPhonenumber = extraIntent.getStringExtra("phoneNumber");
+        extraPhoneNumber = extraIntent.getStringExtra("phoneNumber");
+        extraProfileUri = extraIntent.getStringExtra("profileUri");
+        extraBirthDate = extraIntent.getStringExtra("birthDate");
+        extraPassword = extraIntent.getStringExtra("password");
+
+
         getStartedUsername.setText("Hi, " + extraUsername + "!");
         mAuth = FirebaseAuth.getInstance();
 
-        Log.e("Details",extraFirstname+" "+extraMiddlename+" "+extraLastname
-                +" "+extraEmail+" "+extraAddress+" "+extraPhonenumber);
+        Log.e("Output",
+                extraUsername+" "+
+                        extraFirstname+" "+
+                        extraLastname+" "+
+                        extraEmail+" "+
+                        extraAddress+" "+
+                        extraPhoneNumber+" "+
+                        extraProfileUri+" "+
+                        extraBirthDate);
+
+
+        profileUri = Uri.parse(extraProfileUri);
 
         Picasso.get()
                 .load(profileUri)
                 .placeholder(R.drawable.person)
                 .into(profilePicture);
+
+
 
 
 
@@ -123,6 +131,15 @@ public class GettingStarted extends AppCompatActivity {
 
     public void goToHome(View view) {
         Intent intent = new Intent(GettingStarted.this,Home.class);
+        intent.putExtra("username",extraUsername);
+        intent.putExtra("firstname",extraFirstname);
+        intent.putExtra("profileUri",extraProfileUri);
+        intent.putExtra("lastname",extraLastname);
+        intent.putExtra("email",extraEmail);
+        intent.putExtra("address",extraAddress);
+        intent.putExtra("phoneNumber",extraPhoneNumber);
+        intent.putExtra("password",extraPassword);
+        intent.putExtra("birthDate",extraBirthDate);
         startActivity(intent);
     }
 }

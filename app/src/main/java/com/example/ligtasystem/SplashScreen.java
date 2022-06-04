@@ -1,11 +1,14 @@
 package com.example.ligtasystem;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference dbReference;
-    String userID, usernameExtra, firstnameExtra, middlenameExtra, lastnameExtra, emailExtra, addressExtra, phoneNumberExtra;
+    String userID, usernameExtra, firstnameExtra, lastnameExtra, emailExtra, addressExtra, phoneNumberExtra, profileUriExtra, passwordExtra, birthDateExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,27 +45,6 @@ public class SplashScreen extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         checkUser();
-
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreen.this, GettingStarted.class);
-                intent.putExtra("username",usernameExtra);
-                intent.putExtra("firstname",firstnameExtra);
-                intent.putExtra("middlename",middlenameExtra);
-                intent.putExtra("lastname",lastnameExtra);
-                intent.putExtra("email",emailExtra);
-                intent.putExtra("address",addressExtra);
-                intent.putExtra("phoneNumber",phoneNumberExtra);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-            }
-        }, TIME_OUT);
-
-
 
     }
 
@@ -83,23 +65,65 @@ public class SplashScreen extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
 
-                    if(user!=null){
-                        String username, firstname, middlename, lastname, email, address, phoneNumber;
+                    if(user!=null &&
+                            user.username!=null &&
+                            user.birthdate!=null &&
+                            user.phoneNumber!=null &&
+                            user.address!=null){
+                        String username, firstname, lastname, email, address, phoneNumber, profileUri, password, birthdate;
                         username = user.username;
                         firstname = user.firstname;
-                        middlename = user.middlename;
                         lastname = user.lastname;
                         email = user.email;
                         address = user.address;
                         phoneNumber = user.phoneNumber;
+                        profileUri = user.profileUri;
+                        password = user.password;
+                        birthdate = user.birthdate;
                         firstnameExtra = firstname;
-                        middlenameExtra = middlename;
                         lastnameExtra = lastname;
                         emailExtra = email;
                         addressExtra = address;
                         phoneNumberExtra = phoneNumber;
                         usernameExtra = username;
+                        profileUriExtra = profileUri;
+                        passwordExtra = password;
+                        birthDateExtra = birthdate;
 
+                        Log.e("Information", userID+" "+
+                                usernameExtra+" "+
+                                firstnameExtra+" "+
+                                lastnameExtra+" "+
+                                birthDateExtra+" "+
+                                emailExtra+" "+
+                                addressExtra+" "+
+                                phoneNumberExtra+" "+
+                                profileUriExtra+" "+
+                                passwordExtra);
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(SplashScreen.this, GettingStarted.class);
+                                intent.putExtra("username",usernameExtra);
+                                intent.putExtra("firstname",firstnameExtra);
+                                intent.putExtra("profileUri",profileUriExtra);
+                                intent.putExtra("lastname",lastnameExtra);
+                                intent.putExtra("email",emailExtra);
+                                intent.putExtra("address",addressExtra);
+                                intent.putExtra("phoneNumber",phoneNumberExtra);
+                                intent.putExtra("password",passwordExtra);
+                                intent.putExtra("birthDate",birthDateExtra);
+                                startActivity(intent);
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                finish();
+                            }
+                        }, TIME_OUT);
+
+                    }
+                    else{
+                        startActivity(new Intent(getApplicationContext(),Registration2.class));
+                        finish();
                     }
 
 

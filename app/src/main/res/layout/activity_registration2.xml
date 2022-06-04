@@ -9,14 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="50dp">
+        android:paddingBottom="50dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <TextView
             android:id="@+id/Registration_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/Register"
+            android:text="Additional Info"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:fontFamily="@font/antic"
@@ -25,9 +27,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/antic"
+            android:text="@string/Please"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/Registration_title"
+            app:layout_constraintStart_toStartOf="@+id/Registration_title"
+            app:layout_constraintTop_toBottomOf="@+id/Registration_title" />
+
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/EditText_Username"
+            android:id="@+id/EditText_Username2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -44,10 +59,10 @@
             app:helperTextTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Registration_title">
+            app:layout_constraintTop_toBottomOf="@+id/helper">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Edit_Username"
+                android:id="@+id/Edit_Username2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/antic"
@@ -56,10 +71,46 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/EditText_BirthDate2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginTop="16dp"
+            android:hint="BirthDate"
+            android:onClick="openDatePicker"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/teal_700"
+            app:errorIconTint="@color/teal_700"
+            app:errorTextColor="@color/teal_700"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EditText_Username2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Edit_BirthDate2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_textfields"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:fontFamily="@font/antic"
+                android:inputType="none"
+                android:onClick="openDatePicker"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/EditText_Address"
+            android:id="@+id/EditText_Address2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -74,10 +125,10 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditText_Username">
+            app:layout_constraintTop_toBottomOf="@+id/EditText_BirthDate2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Edit_Address"
+                android:id="@+id/Edit_Address2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/antic"
@@ -87,7 +138,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/EditText_Phone_Number"
+            android:id="@+id/EditText_Phone_Number2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -102,10 +153,10 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditText_Address">
+            app:layout_constraintTop_toBottomOf="@+id/EditText_Address2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Edit_Phone_Number"
+                android:id="@+id/Edit_Phone_Number2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/antic"
@@ -124,12 +175,12 @@
             android:textSize="20sp"
             android:fontFamily="@font/antic"
             android:onClick="registerFirebase"
-            android:text="@string/Register"
+            android:text="Complete Registration"
             android:textColor="@color/white"
             android:background="@drawable/register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditText_Phone_Number" />
+            app:layout_constraintTop_toBottomOf="@+id/EditText_Phone_Number2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

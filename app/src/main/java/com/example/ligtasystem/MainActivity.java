@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         editTextEmail = (TextInputLayout) findViewById(R.id.EditText_Email);
         editTextPassword = (TextInputLayout) findViewById(R.id.EditText_Password);
         mAuth = FirebaseAuth.getInstance();
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id1)).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
         mAuth = FirebaseAuth.getInstance();
 
@@ -124,17 +124,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onSuccess: UID "+uid);
 
                 if (authResult.getAdditionalUserInfo().isNewUser()){
-                    Toast.makeText(MainActivity.this,"Account Created "+email,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Google Sign In Success",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,Registration2.class);
+                    startActivity(intent);
+
+
                 }
                 else{
                     Log.d(TAG, "onSuccess: Existing user "+email);
-                    Toast.makeText(MainActivity.this,"Existing user "+email,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Log In Successful ",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,SplashScreen.class);
+                    startActivity(intent);
 
                 }
 
-                Intent intent = new Intent(MainActivity.this,SplashScreen.class);
-                startActivity(intent);
                 finish();
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

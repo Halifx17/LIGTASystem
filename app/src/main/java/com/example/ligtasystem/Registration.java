@@ -28,8 +28,8 @@ public class Registration extends AppCompatActivity {
 
     Button registrationButton, birthBtn;
     FirebaseAuth mAuth;
-    TextInputLayout editTextFirstName, editTextMiddleName, editTextLastName, editTextUsername, editTextBirthDate, editTextEmail, editTextAddress, editTextPhoneNumber, editTextPassword;
-    EditText editFirstName, editMiddleName, editLastName, editUsername, editBirthDate, editEmail, editAddress, editPhoneNumber, editPassword;
+    TextInputLayout editTextFirstName, editTextLastName, editTextUsername, editTextBirthDate, editTextEmail, editTextAddress, editTextPhoneNumber, editTextPassword;
+    EditText editFirstName, editLastName, editUsername, editBirthDate, editEmail, editAddress, editPhoneNumber, editPassword;
     DatePickerDialog datePickerDialog;
 
     @Override
@@ -42,7 +42,6 @@ public class Registration extends AppCompatActivity {
         initDatePicker();
 
         editFirstName = findViewById(R.id.Edit_First_Name);
-        editMiddleName = findViewById(R.id.Edit_Middle_Name);
         editLastName = findViewById(R.id.Edit_Last_Name);
         editUsername = findViewById(R.id.Edit_Username);
         editEmail = findViewById(R.id.Edit_Email);
@@ -52,7 +51,6 @@ public class Registration extends AppCompatActivity {
         editBirthDate = findViewById(R.id.Edit_BirthDate);
 
         editTextFirstName = findViewById(R.id.EditText_First_Name);
-        editTextMiddleName = findViewById(R.id.EditText_Middle_Name);
         editTextLastName = findViewById(R.id.EditText_Last_Name);
         editTextUsername = findViewById(R.id.EditText_Username);
         editTextEmail = findViewById(R.id.EditText_Email);
@@ -93,7 +91,7 @@ public class Registration extends AppCompatActivity {
 
     private String makeDateString(int day, int month, int year) {
 
-        return getMonthFormat(month)+" "+day+" "+year;
+        return getMonthFormat(month)+" "+day+", "+year;
     }
 
     private String getMonthFormat(int month) {
@@ -135,10 +133,9 @@ public class Registration extends AppCompatActivity {
 
     public void registerFirebase(View view) {
 
-        String firstname, middlename, lastname, username, email, address, phoneNumber, password, birthdate;
+        String firstname, lastname, username, email, address, phoneNumber, password, birthdate, profileUri;
 
         firstname = editFirstName.getText().toString().trim();
-        middlename = editMiddleName.getText().toString().trim();
         lastname = editLastName.getText().toString().trim();
         username = editUsername.getText().toString().trim();
         email = editEmail.getText().toString().trim();
@@ -146,13 +143,13 @@ public class Registration extends AppCompatActivity {
         phoneNumber = editPhoneNumber.getText().toString().trim();
         password = editPassword.getText().toString().trim();
         birthdate = editBirthDate.getText().toString().trim();
+        profileUri = " ";
 
 
-        if (firstname.isEmpty() && middlename.isEmpty() && lastname.isEmpty() && username.isEmpty()
+        if (firstname.isEmpty() && lastname.isEmpty() && username.isEmpty()
                 && email.isEmpty() && address.isEmpty() && phoneNumber.isEmpty() && password.isEmpty()&& birthdate.isEmpty()) {
             Toast.makeText(Registration.this, "Fields are Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError("First Name is Required");
-            editTextMiddleName.setError("Middle Name is Required");
             editTextLastName.setError("Last Name is Required");
             editTextUsername.setError("Username is Required");
             editTextEmail.setError("Email is Required");
@@ -163,18 +160,6 @@ public class Registration extends AppCompatActivity {
         } else if (firstname.isEmpty()) {
             Toast.makeText(Registration.this, "First name is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError("First Name is Required");
-            editTextMiddleName.setError(null);
-            editTextLastName.setError(null);
-            editTextUsername.setError(null);
-            editTextEmail.setError(null);
-            editTextAddress.setError(null);
-            editTextPhoneNumber.setError(null);
-            editTextPassword.setError(null);
-            editTextBirthDate.setError(null);
-        } else if (middlename.isEmpty()) {
-            Toast.makeText(Registration.this, "Middle name is Required", Toast.LENGTH_LONG).show();
-            editTextFirstName.setError(null);
-            editTextMiddleName.setError("Middle Name is Required");
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -185,7 +170,6 @@ public class Registration extends AppCompatActivity {
         } else if (lastname.isEmpty()) {
             Toast.makeText(Registration.this, "Last name is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError("Last Name is Required");
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -196,7 +180,6 @@ public class Registration extends AppCompatActivity {
         } else if (username.isEmpty()) {
             Toast.makeText(Registration.this, "Username is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError("Username is Required");
             editTextEmail.setError(null);
@@ -207,7 +190,6 @@ public class Registration extends AppCompatActivity {
         } else if (email.isEmpty()) {
             Toast.makeText(Registration.this, "Email is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError("Email is Required");
@@ -218,7 +200,6 @@ public class Registration extends AppCompatActivity {
         } else if (address.isEmpty()) {
             Toast.makeText(Registration.this, "Address is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -229,7 +210,6 @@ public class Registration extends AppCompatActivity {
         } else if (phoneNumber.isEmpty()) {
             Toast.makeText(Registration.this, "Phone number is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -240,7 +220,6 @@ public class Registration extends AppCompatActivity {
         } else if (password.isEmpty()) {
             Toast.makeText(Registration.this, "Password is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -251,7 +230,6 @@ public class Registration extends AppCompatActivity {
         } else if (birthdate.isEmpty()) {
             Toast.makeText(Registration.this, "Password is Required", Toast.LENGTH_LONG).show();
             editTextFirstName.setError(null);
-            editTextMiddleName.setError(null);
             editTextLastName.setError(null);
             editTextUsername.setError(null);
             editTextEmail.setError(null);
@@ -266,7 +244,7 @@ public class Registration extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        User user = new User(firstname, middlename, lastname, username, birthdate, email, address, phoneNumber, password);
+                        User user = new User(firstname, lastname, username, birthdate, email, address, phoneNumber, password, profileUri);
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

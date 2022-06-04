@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "693832351431",
+    "firebase_url": "https://ligtasystem-default-rtdb.firebaseio.com",
     "project_id": "ligtasystem",
     "storage_bucket": "ligtasystem.appspot.com"
   },
