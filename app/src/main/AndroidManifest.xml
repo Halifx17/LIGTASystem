@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LIGTASystem">
         <activity
+            android:name=".Registration2"
+            android:exported="false" />
+        <activity
             android:name=".Countries"
             android:exported="false" />
         <activity

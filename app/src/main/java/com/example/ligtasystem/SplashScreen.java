@@ -41,45 +41,9 @@ public class SplashScreen extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        dbReference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
+        checkUser();
 
 
-        dbReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-
-                if(user!=null){
-                    String username, firstname, middlename, lastname, email, address, phoneNumber;
-                    username = user.username;
-                    firstname = user.firstname;
-                    middlename = user.middlename;
-                    lastname = user.lastname;
-                    email = user.email;
-                    address = user.address;
-                    phoneNumber = user.phoneNumber;
-                    firstnameExtra = firstname;
-                    middlenameExtra = middlename;
-                    lastnameExtra = lastname;
-                    emailExtra = email;
-                    addressExtra = address;
-                    phoneNumberExtra = phoneNumber;
-                    usernameExtra = username;
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                Toast.makeText(SplashScreen.this,"An Error has Occurred", Toast.LENGTH_LONG).show();
-
-            }
-        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -98,6 +62,58 @@ public class SplashScreen extends AppCompatActivity {
             }
         }, TIME_OUT);
 
+
+
+    }
+
+    private void checkUser() {
+
+        user = mAuth.getCurrentUser();
+
+        if (user == null){
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }
+        else{
+
+            dbReference = FirebaseDatabase.getInstance().getReference("Users");
+            userID = user.getUid();
+            dbReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+
+                    if(user!=null){
+                        String username, firstname, middlename, lastname, email, address, phoneNumber;
+                        username = user.username;
+                        firstname = user.firstname;
+                        middlename = user.middlename;
+                        lastname = user.lastname;
+                        email = user.email;
+                        address = user.address;
+                        phoneNumber = user.phoneNumber;
+                        firstnameExtra = firstname;
+                        middlenameExtra = middlename;
+                        lastnameExtra = lastname;
+                        emailExtra = email;
+                        addressExtra = address;
+                        phoneNumberExtra = phoneNumber;
+                        usernameExtra = username;
+
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                    Toast.makeText(SplashScreen.this,"An Error has Occurred", Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+        }
 
 
     }
