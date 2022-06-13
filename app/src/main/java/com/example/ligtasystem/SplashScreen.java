@@ -32,7 +32,17 @@ public class SplashScreen extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference dbReference;
-    String userID, usernameExtra, firstnameExtra, lastnameExtra, emailExtra, addressExtra, phoneNumberExtra, profileUriExtra, passwordExtra, birthDateExtra;
+    String userID,
+            usernameExtra,
+            firstnameExtra,
+            lastnameExtra,
+            emailExtra,
+            addressExtra,
+            phoneNumberExtra,
+            profileUriExtra,
+            passwordExtra,
+            birthDateExtra,
+            userIDExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +99,7 @@ public class SplashScreen extends AppCompatActivity {
                         profileUriExtra = profileUri;
                         passwordExtra = password;
                         birthDateExtra = birthdate;
+                        userIDExtra = userID;
 
                         Log.e("Information", userID+" "+
                                 usernameExtra+" "+
@@ -99,7 +110,8 @@ public class SplashScreen extends AppCompatActivity {
                                 addressExtra+" "+
                                 phoneNumberExtra+" "+
                                 profileUriExtra+" "+
-                                passwordExtra);
+                                passwordExtra+" "+
+                                userIDExtra);
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -114,6 +126,7 @@ public class SplashScreen extends AppCompatActivity {
                                 intent.putExtra("phoneNumber",phoneNumberExtra);
                                 intent.putExtra("password",passwordExtra);
                                 intent.putExtra("birthDate",birthDateExtra);
+                                intent.putExtra("userID", userIDExtra);
                                 startActivity(intent);
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                                 finish();

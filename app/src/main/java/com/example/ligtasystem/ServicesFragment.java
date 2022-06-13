@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 public class ServicesFragment extends Fragment {
 
     CardView covidVac, tigdasVac, rabiesVac;
+    String userID, extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate, extraPassword;
 
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,10 +71,35 @@ public class ServicesFragment extends Fragment {
         tigdasVac = view.findViewById(R.id.tigdasVac);
         rabiesVac = view.findViewById(R.id.rabiesVac);
 
+        Intent extraIntent = getActivity().getIntent();
+        userID = extraIntent.getStringExtra("userID");
+        extraUsername = extraIntent.getStringExtra("username");
+        extraFirstname = extraIntent.getStringExtra("firstname");
+        extraLastname = extraIntent.getStringExtra("lastname");
+        extraEmail = extraIntent.getStringExtra("email");
+        extraAddress = extraIntent.getStringExtra("address");
+        extraPhoneNumber = extraIntent.getStringExtra("phoneNumber");
+        extraProfileUri = extraIntent.getStringExtra("profileUri");
+        extraBirthDate = extraIntent.getStringExtra("birthDate");
+        extraPassword = extraIntent.getStringExtra("password");
+        Log.e("Output"," "+userID);
+
+
+
         covidVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),Covid_Vac.class);
+                intent.putExtra("userID",userID);
+                intent.putExtra("username",extraUsername);
+                intent.putExtra("firstname",extraFirstname);
+                intent.putExtra("profileUri",extraProfileUri);
+                intent.putExtra("lastname",extraLastname);
+                intent.putExtra("email",extraEmail);
+                intent.putExtra("address",extraAddress);
+                intent.putExtra("phoneNumber",extraPhoneNumber);
+                intent.putExtra("password",extraPassword);
+                intent.putExtra("birthDate",extraBirthDate);
                 startActivity(intent);
             }
         });
@@ -81,6 +108,16 @@ public class ServicesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),Tigdas_Vac.class);
+                intent.putExtra("userID",userID);
+                intent.putExtra("username",extraUsername);
+                intent.putExtra("firstname",extraFirstname);
+                intent.putExtra("profileUri",extraProfileUri);
+                intent.putExtra("lastname",extraLastname);
+                intent.putExtra("email",extraEmail);
+                intent.putExtra("address",extraAddress);
+                intent.putExtra("phoneNumber",extraPhoneNumber);
+                intent.putExtra("password",extraPassword);
+                intent.putExtra("birthDate",extraBirthDate);
                 startActivity(intent);
             }
         });
@@ -88,7 +125,17 @@ public class ServicesFragment extends Fragment {
         rabiesVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),Rabies_Vac.class);
+                Intent intent = new Intent(getContext(),FreeMedicine.class);
+                intent.putExtra("userID",userID);
+                intent.putExtra("username",extraUsername);
+                intent.putExtra("firstname",extraFirstname);
+                intent.putExtra("profileUri",extraProfileUri);
+                intent.putExtra("lastname",extraLastname);
+                intent.putExtra("email",extraEmail);
+                intent.putExtra("address",extraAddress);
+                intent.putExtra("phoneNumber",extraPhoneNumber);
+                intent.putExtra("password",extraPassword);
+                intent.putExtra("birthDate",extraBirthDate);
                 startActivity(intent);
             }
         });

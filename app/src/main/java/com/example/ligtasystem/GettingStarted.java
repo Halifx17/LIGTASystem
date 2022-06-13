@@ -31,7 +31,7 @@ public class GettingStarted extends AppCompatActivity {
 
 
     TextView getStartedUsername;
-    String extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate, extraPassword;
+    String extraUserID, extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate, extraPassword;
     FirebaseAuth mAuth;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -68,6 +68,7 @@ public class GettingStarted extends AppCompatActivity {
         extraProfileUri = extraIntent.getStringExtra("profileUri");
         extraBirthDate = extraIntent.getStringExtra("birthDate");
         extraPassword = extraIntent.getStringExtra("password");
+        extraUserID = extraIntent.getStringExtra("userID");
 
 
         getStartedUsername.setText("Hi, " + extraUsername + "!");
@@ -81,7 +82,8 @@ public class GettingStarted extends AppCompatActivity {
                         extraAddress+" "+
                         extraPhoneNumber+" "+
                         extraProfileUri+" "+
-                        extraBirthDate);
+                        extraBirthDate+" "+
+                        extraUserID);
 
 
         profileUri = Uri.parse(extraProfileUri);
@@ -140,6 +142,7 @@ public class GettingStarted extends AppCompatActivity {
         intent.putExtra("phoneNumber",extraPhoneNumber);
         intent.putExtra("password",extraPassword);
         intent.putExtra("birthDate",extraBirthDate);
+        intent.putExtra("userID",extraUserID);
         startActivity(intent);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Rabies_Vac">
+    tools:context=".FreeMedicine">
 
     <TextView
         android:id="@+id/textView"
@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/antic"
-        android:text="Rabies Vaccine"
+        android:text="FREE MEDICINE"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

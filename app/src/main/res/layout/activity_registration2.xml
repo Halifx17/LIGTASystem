@@ -78,7 +78,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:layout_marginTop="16dp"
-            android:hint="BirthDate"
+            android:hint="Birth Date"
             android:onClick="openDatePicker"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
