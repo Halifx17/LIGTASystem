@@ -3,7 +3,10 @@ package com.example.ligtasystem;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
@@ -22,10 +25,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +61,12 @@ public class HomeFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+
+    RecyclerView recyclerView;
+    MyAdapterAnnounce myAdapterAnnounce;
+    DatabaseReference dbReference;
+    ArrayList<Announcement> list;
 
     private ProgressBar progressBar, progressBar2;
     private TextView
@@ -109,6 +124,39 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        recyclerView = view.findViewById(R.id.recyclerAnnounce);
+        dbReference = FirebaseDatabase.getInstance().getReference("Announcements");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        list = new ArrayList<>();
+        myAdapterAnnounce = new MyAdapterAnnounce(getContext(),list);
+        recyclerView.setAdapter(myAdapterAnnounce);
+
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Announcement announcement = dataSnapshot.getValue(Announcement.class);
+                    list.add(announcement);
+                }
+
+                myAdapterAnnounce.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
 

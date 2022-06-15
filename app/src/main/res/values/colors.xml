@@ -14,4 +14,8 @@
     <color name="gray2">#DCDCDC</color>
     <color name="gray3">#666666</color>
     <color name="green">#00A300</color>
+    <color name="babyBlue">#D4F1F4</color>
+    <color name="orangeServ">#FDB750</color>
+    <color name="greenServ">#B2D2A4</color>
+    <color name="yellowServ">#FFFF8A</color>
 </resources>

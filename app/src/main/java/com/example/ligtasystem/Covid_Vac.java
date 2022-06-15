@@ -25,8 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Covid_Vac extends AppCompatActivity {
 
-    TextInputLayout editTextTitle, editTextWhatTxt;
-    TextInputEditText editTitle, editWhatTxt;
+    TextInputLayout editTextConcern;
+    TextInputEditText editConcern;
     DatabaseReference referenceId;
     String userID, extraUsername, extraFirstname, extraLastname, extraEmail, extraAddress, extraPhoneNumber, extraProfileUri, extraBirthDate, extraPassword;
     long maxId = 0;
@@ -36,11 +36,10 @@ public class Covid_Vac extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_covid_vac);
 
-        editTextTitle = findViewById(R.id.EditText_title);
-        editTextWhatTxt = findViewById(R.id.EditText_title);
+        editTextConcern = findViewById(R.id.EditText_concernTxt);
 
-        editTitle = findViewById(R.id.Edit_title);
-        editWhatTxt = findViewById(R.id.Edit_whatTxt);
+        editConcern = findViewById(R.id.Edit_concernTxt);
+
 
         Intent extraIntent = getIntent();
         userID = extraIntent.getStringExtra("userID");
@@ -86,31 +85,31 @@ public class Covid_Vac extends AppCompatActivity {
 
     public void postFirebase(View view) {
 
-        String title, content;
+        String concern, type, color, firstname, lastname, username, birthdate, email, address, phoneNumber, password, profileUri;
+        firstname = extraFirstname;
+        lastname = extraLastname;
+        username = extraUsername;
+        birthdate = extraBirthDate;
+        email = extraEmail;
+        address = extraAddress;
+        phoneNumber = extraPhoneNumber;
+        password = extraPassword;
+        profileUri = extraProfileUri;
+        type = "Covid Vaccine";
+        color = "#FDB750";
 
-        title = editTitle.getText().toString().trim();
-        content = editWhatTxt.getText().toString().trim();
 
-        if (title.isEmpty() && content.isEmpty()) {
+        concern = editConcern.getText().toString().trim();
+
+        if (concern.isEmpty()) {
             Toast.makeText(Covid_Vac.this, "Fields are Required", Toast.LENGTH_LONG).show();
-            editTextTitle.setError("Field is Required");
-            editTextWhatTxt.setError("Field is Required");
-
-        } else if(title.isEmpty()) {
-            Toast.makeText(Covid_Vac.this, "Fields are Required", Toast.LENGTH_LONG).show();
-            editTextTitle.setError("Field is Required");
-            editTextWhatTxt.setError(null);
-
-        } else if(content.isEmpty()) {
-            Toast.makeText(Covid_Vac.this, "Fields are Required", Toast.LENGTH_LONG).show();
-            editTextTitle.setError(null);
-            editTextWhatTxt.setError("Field is Required");
+            editTextConcern.setError("Field is Required");
 
         } else {
-            Post post = new Post(title,content);
+            Cov_Class post = new Cov_Class(concern, type, color, firstname, lastname, username, birthdate, email, address, phoneNumber, password, profileUri);
 
 
-            referenceId.child(String.valueOf(maxId+1)).setValue(post).addOnCompleteListener(new OnCompleteListener<Void>() {
+            referenceId.push().setValue(post).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 

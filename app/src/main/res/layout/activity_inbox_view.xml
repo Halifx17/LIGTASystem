@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InboxView">
+
+    <TextView
+        android:id="@+id/getStartedUsername"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/gray"
+        android:fontFamily="@font/antic"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:text="MESSAGE"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/inboxTypeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/antic"
+        android:text="TextView"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getStartedUsername" />
+
+    <TextView
+        android:id="@+id/inboxConcernText"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/candal"
+        android:gravity="center"
+        android:text="@string/Welcome"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/inboxTypeText"
+        app:layout_constraintStart_toStartOf="@+id/inboxTypeText"
+        app:layout_constraintTop_toBottomOf="@+id/inboxTypeText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

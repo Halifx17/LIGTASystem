@@ -3,8 +3,6 @@ package com.example.ligtasystem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +15,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -97,7 +94,7 @@ public class Home extends AppCompatActivity {
                     selectedFragment = new ProfileFragment();
                     break;
                 case R.id.item4:
-                    selectedFragment = new AboutFragment();
+                    selectedFragment = new InboxFragment();
                     break;
 
 

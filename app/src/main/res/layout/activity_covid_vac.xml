@@ -20,68 +20,43 @@
             <TextView
                 android:id="@+id/announceTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_height="80dp"
+                android:background="@color/orangeServ"
                 android:fontFamily="@font/antic"
-                android:gravity="center_horizontal"
-                android:text="COVID-19 VACCINE"
-                android:textSize="32dp">
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="COVID-19 VACCINE FORM"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/EditText_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/announceTitle"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="64dp"
-                android:hint="TITLE"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:errorIconTint="@color/teal_700"
-                app:errorTextColor="@color/teal_700"
-                app:helperTextEnabled="true"
-                app:hintTextColor="@color/teal_700">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Edit_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_textfields"
-                    android:fontFamily="@font/antic"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <TextView
                 android:id="@+id/whatTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/EditText_title"
+                android:layout_alignTop="@+id/announceTitle"
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="90dp"
                 android:fontFamily="@font/antic"
                 android:gravity="center_horizontal"
-                android:text="WHAT"
+                android:text="CONCERN"
                 android:textSize="26dp">
 
             </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/EditText_whatTxt"
+                android:id="@+id/EditText_concernTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/whatTitle"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:hint="Insert Announcement here. . . "
+                android:hint="Enter Concern Here. . . "
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:errorEnabled="true"
@@ -92,7 +67,7 @@
                 app:hintTextColor="@color/teal_700">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Edit_whatTxt"
+                    android:id="@+id/Edit_concernTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -113,15 +88,15 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/AddAnime"
-                android:layout_width="180dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/EditText_whatTxt"
+                android:layout_below="@+id/EditText_concernTxt"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="25dp"
                 android:background="@drawable/login_button"
                 android:onClick="postFirebase"
-                android:text="POST ANNOUNCEMENT"
+                android:text="SEND"
                 android:textColor="@color/white" />
 
 

@@ -10,7 +10,7 @@
     <item android:title="@string/Profile"
         android:id="@+id/item3"
         android:icon="@drawable/ic_baseline_person_24"/>
-    <item android:title="@string/About"
+    <item android:title="Inbox"
         android:id="@+id/item4"
-        android:icon="@drawable/ic_baseline_view_list_24"/>
+        android:icon="@drawable/ic_baseline_email_24"/>
 </menu>

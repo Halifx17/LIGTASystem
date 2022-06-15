@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:fontFamily="@font/antic"
-        android:text="@string/Services"
-        android:textSize="32sp"
+        android:text="SERVICES"
+        android:textSize="50sp"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +56,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@color/gray"
+                        android:background="@color/orangeServ"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
                         android:text="@string/BakunaCov"
@@ -94,7 +95,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@color/gray"
+                        android:background="@color/yellowServ"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
                         android:text="@string/BakunaTig"
@@ -133,7 +134,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@color/gray"
+                        android:background="@color/greenServ"
                         android:fontFamily="@font/antic"
                         android:gravity="center"
                         android:text="LIBRENG GAMOT"

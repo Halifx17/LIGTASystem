@@ -18,6 +18,20 @@
             android:paddingBottom="50dp">
 
             <TextView
+                android:id="@+id/getStartedUsername"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:fontFamily="@font/antic"
+                android:text="HOME"
+                android:textSize="50sp"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/AnnouncementTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,16 +39,16 @@
                 android:fontFamily="@font/antic"
                 android:text="ANNOUNCEMENTS"
                 android:textSize="32sp"
-                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/getStartedUsername" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAnnounce"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:padding="30dp"
+                android:layout_height="150dp"
+                android:background="@color/gray2"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/AnnouncementTitle" />
 
             <TextView
@@ -67,6 +81,7 @@
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="30dp"
+                android:background="@color/gray2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar">
@@ -349,6 +364,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
+            android:background="@color/gray2"
             android:paddingHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
