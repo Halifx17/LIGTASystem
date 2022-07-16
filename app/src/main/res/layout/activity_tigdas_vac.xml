@@ -11,6 +11,106 @@
         android:layout_height="match_parent">
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/announceTitle"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/yellowServ"
+                android:fontFamily="@font/antic"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="TIGDAS VACCINE FORM"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/whatTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/announceTitle"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="90dp"
+                android:fontFamily="@font/antic"
+                android:gravity="center_horizontal"
+                android:text="CONCERN"
+                android:textSize="26dp">
+
+            </TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/EditText_concernTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/whatTitle"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:hint="Enter Concern Here. . . "
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/teal_700"
+                app:errorTextColor="@color/teal_700"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/black"
+                app:hintTextColor="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Edit_concernTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:gravity="center"
+                    android:lines="6"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:background="@drawable/round_textfields"
+                    android:fontFamily="@font/antic"
+                    android:textColor="@color/black" />
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/AddAnime"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/EditText_concernTxt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/login_button"
+                android:onClick="postFirebase"
+                android:text="SEND"
+                android:textColor="@color/white" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

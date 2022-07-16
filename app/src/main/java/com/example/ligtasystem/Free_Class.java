@@ -1,10 +1,10 @@
 package com.example.ligtasystem;
 
-public class Tig_Class {
+public class Free_Class {
 
     String concern, type, color, firstname, lastname, username, birthdate, email, address, phoneNumber, password, profileUri;
 
-    public Tig_Class(String concern, String type, String color, String firstname, String lastname, String username, String birthdate, String email, String address, String phoneNumber, String password, String profileUri) {
+    public Free_Class(String concern, String type, String color, String firstname, String lastname, String username, String birthdate, String email, String address, String phoneNumber, String password, String profileUri) {
         this.concern = concern;
         this.type = type;
         this.color = color;
@@ -115,7 +115,7 @@ public class Tig_Class {
         this.profileUri = profileUri;
     }
 
-    public Tig_Class(){
+    public Free_Class(){
 
     }
 }
